@@ -116,8 +116,7 @@ class AddressBook
     }
     toString()
     {
-        return "\nAddressBook Conatct :- \n"+
-        "-------------------------------------------"+
+        return "\n-------------------------------------------"+
         "\nFirst Name = "+ this.firstName +
         ", \nLast Name = "+ this.lastName+
         ", \nAddress = "+ this.address +
@@ -130,38 +129,104 @@ class AddressBook
     }
 }
 
-try 
+console.log("\n|****************************************************************************|");
+console.log("|                     Welcome To Address Book System                         |");
+console.log("|****************************************************************************|");
+let addressBookFlag = true;
+var addressBookArray = []
+while(addressBookFlag == true)
 {
-    let newAddressBook = new AddressBook("Dnyanesh","Gawade","Pune","Pune","Maharastra",411060,"91 1234567890","dnyanesh@gmail.com");
-    console.log(newAddressBook.toString());
-} 
-catch (e) 
-{
-    console.error(e)
+    let bookChoice;
+   
+    console.log("\n|--------------------------------------------- -|");
+    console.log("|       * Address Book Choice *                 |");
+    console.log("|-----------------------------------------------|");
+    console.log("| 1  -> Add New Contact In AddreessBook         |");
+    console.log("| 2  -> View All Contacts In AddreessBook       |");
+    console.log("| 3  -> Modify Exsiting Contact In AddreessBook |");
+    console.log("| 4  -> Exit From AddressBook System            |");
+    console.log("|-----------------------------------------------|");
+
+    console.log(">>> Enter Your Choice  >>>");
+    bookChoice = Number(prompt( bookChoice));
+    switch(bookChoice)
+    {
+        case 1:
+            addData(addressBookArray);
+            break;
+        case 2:
+            viewData(addressBookArray);
+            break;
+        case 3:
+             updateData(addressBookArray);
+            break;
+        case 4:
+            addressBookFlag = false;
+            console.log(" !! Thank You For Using Address Book System !! ");
+            break;
+        default:
+                console.log(" !! Invalid Input !! \n> Type Valid Input. ");
+    }
 }
 
-let addressBookArray = new Array();
-try 
-{ 
-    const  numOfData1  = prompt(' \nHow Many Data You Want to add in Address Book ');
-    let numOfData = Number(numOfData1) // Parse String to Number Format
-    
-    for(let i = 1; i <= numOfData; i++)
-    {
-        firstName = prompt("Enter First Name: ");
-        lastName = prompt("Enter Last Name: ");
-        address = prompt("Enter Address: ");
-        city = prompt("Enter City: ");
-        state = prompt("Enter State: ");
-        zip = prompt("Enter Zip: ");
-        phoneNumber = prompt("Enter Phone Number: ");
-        email = prompt("Enter Email Address: ");
-        let newaddressBook = new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
-        addressBookArray.push(newaddressBook.toString());
-    }
-    console.log("Addressbook Contacts : "+addressBookArray);
-}
-catch (exception) 
+
+function addData(addressBookArray)
 {
-    console.error(exception)
+    let numOfData,numOfData1;
+    try 
+    { 
+        try{
+        numOfData1  = prompt(' > How Many Data You Want to add in Address Book :-');
+        numOfData = Number(numOfData1) // Parse String to Number Format
+        }catch(exception)
+        {
+            console.exception(" !! Alert !!\n>Type only Numeric Value .");
+        }
+        for(let i = 1; i <= numOfData; i++)
+        {
+            firstName = prompt("Enter First Name:- ");
+            lastName = prompt("Enter Last Name:- ");
+            address = prompt("Enter Address:- ");
+            city = prompt("Enter City:- ");
+            state = prompt("Enter State:- ");
+            zip = prompt("Enter Zip:- ");
+            phoneNumber = prompt("Enter Phone Number:- ");
+            email = prompt("Enter Email Address:- ");
+            let newaddressBook = new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
+            addressBookArray.push(newaddressBook);
+        }
+        console.log(" * Person Contact SuccessFully Added . *");
+    }
+    catch (exception) 
+    {
+        console.error(exception)
+    }
+}
+
+function viewData(addressBookArray)
+{
+    console.log("\n|--------------------------------------------- -|");
+    console.log("|       * Address Book Contact DataBase *       |");
+    console.log("|-----------------------------------------------|");   
+    console.log(addressBookArray.toString());
+}
+function updateData(addressBookArray)
+{
+    const updateName = prompt("Enter Name To Search: ")
+    addressBookArray.forEach(element => {
+        try {
+            if(element.firstName===updateName){
+                console.log(" ********* For Modify Data ********");
+                element.firstName = prompt(" New First Name :- ")
+            }
+            else{
+                console.log(" Name  Not Found in DataBase ");
+                console.log(" > Make Sure You Type Validate First Name. ");
+            }
+        } catch (exception) {
+            console.error(exception)
+        }
+    
+    });
+    console.log(" * Person Data SuccessFully Updated/Modified/Edited . *");
 }
