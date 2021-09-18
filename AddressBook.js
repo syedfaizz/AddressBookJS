@@ -1,3 +1,7 @@
+//"use strict";
+const prompt = require("prompt-sync")(); //For Accept Input Command Line Arguments
+
+
 class AddressBook
 {
     constructor(...params)
@@ -112,24 +116,52 @@ class AddressBook
     }
     toString()
     {
-        return "\nAddressBook Conatct :- \n[ "+
-        "First Name = "+ this.firstName +
-        ", Last Name = "+ this.lastName+
-        ", Address = "+ this.address +
-        ", City = "+ this.city +
-        ", ]\n[State = "+ this.state +
-        ", Zip = "+ this.zip +
-        ", Phone Number = "+ this.phoneNumber +
-        ", Email ID = "+ this.email + " ] ";
+        return "\nAddressBook Conatct :- \n"+
+        "-------------------------------------------"+
+        "\nFirst Name = "+ this.firstName +
+        ", \nLast Name = "+ this.lastName+
+        ", \nAddress = "+ this.address +
+        ", \nCity = "+ this.city +
+        ", \nState = "+ this.state +
+        ", \nZip = "+ this.zip +
+        ", \nPhone Number = "+ this.phoneNumber +
+        ", \nEmail ID = "+ this.email +
+        "\n-------------------------------------------\n\n";
     }
 }
 
 try 
 {
-    let newAddressBook = new AddressBook("Dnyanesh","Gawade","Pune","Pune","Maharastra",411060,"dnyanesh@gmail.com",1234567890);
+    let newAddressBook = new AddressBook("Dnyanesh","Gawade","Pune","Pune","Maharastra",411060,"91 1234567890","dnyanesh@gmail.com");
     console.log(newAddressBook.toString());
 } 
 catch (e) 
 {
     console.error(e)
+}
+
+let addressBookArray = new Array();
+try 
+{ 
+    const  numOfData1  = prompt(' \nHow Many Data You Want to add in Address Book ');
+    let numOfData = Number(numOfData1) // Parse String to Number Format
+    
+    for(let i = 1; i <= numOfData; i++)
+    {
+        firstName = prompt("Enter First Name: ");
+        lastName = prompt("Enter Last Name: ");
+        address = prompt("Enter Address: ");
+        city = prompt("Enter City: ");
+        state = prompt("Enter State: ");
+        zip = prompt("Enter Zip: ");
+        phoneNumber = prompt("Enter Phone Number: ");
+        email = prompt("Enter Email Address: ");
+        let newaddressBook = new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
+        addressBookArray.push(newaddressBook.toString());
+    }
+    console.log("Addressbook Contacts : "+addressBookArray);
+}
+catch (exception) 
+{
+    console.error(exception)
 }
