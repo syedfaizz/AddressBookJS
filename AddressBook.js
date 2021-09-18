@@ -183,27 +183,46 @@ function addData(addressBookArray)
     let numOfData,numOfData1;
     try 
     { 
-        try{
-        numOfData1  = prompt(' > How Many Data You Want to add in Address Book :-');
-        numOfData = Number(numOfData1) // Parse String to Number Format
-        }catch(exception)
+        try
+        {
+            numOfData1  = prompt(' > How Many Data You Want to add in Address Book :-');
+            numOfData = Number(numOfData1) // Parse String to Number Format
+        }
+        catch(exception)
         {
             console.exception(" !! Alert !!\n>Type only Numeric Value .");
         }
         for(let i = 1; i <= numOfData; i++)
-        {
-            firstName = prompt("Enter First Name:- ");
-            lastName = prompt("Enter Last Name:- ");
-            address = prompt("Enter Address:- ");
-            city = prompt("Enter City:- ");
-            state = prompt("Enter State:- ");
-            zip = prompt("Enter Zip:- ");
-            phoneNumber = prompt("Enter Phone Number:- ");
-            email = prompt("Enter Email Address:- ");
-            let newaddressBook = new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
-            addressBookArray.push(newaddressBook);
+        {   
+            var flag = true;
+            let addfirstName = prompt("Enter First Name:- ");
+            const found = addressBookArray.forEach(element => 
+            {
+                if(element.firstName == addfirstName)
+                {
+                    flag =false;
+                } 
+            });          
+            if(flag == true)
+            {
+                
+                addlastName = prompt("Enter Last Name:- ");
+                addaddress = prompt("Enter Address:- ");
+                addcity = prompt("Enter City:- ");
+                addstate = prompt("Enter State:- ");
+                addzip = prompt("Enter Zip:- ");
+                addphoneNumber = prompt("Enter Phone Number:- ");
+                addemail = prompt("Enter Email Address:- ");
+                let newaddressBook = new AddressBook(addfirstName,addlastName,addaddress,addcity,addstate,addzip,addphoneNumber,addemail);
+            
+                addressBookArray.push(newaddressBook);
+                console.log("\n * Person Contact SuccessFully Added . *");
+            }
+            else
+            {
+                console.log(" Contact is already in Address Book System ");
+            }           
         }
-        console.log(" * Person Contact SuccessFully Added . *");
     }
     catch (exception) 
     {
