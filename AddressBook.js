@@ -145,7 +145,8 @@ while(addressBookFlag == true)
     console.log("| 2  -> View All Contacts In AddreessBook       |");
     console.log("| 3  -> Modify Exsiting Contact In AddreessBook |");
     console.log("| 4  -> Delete Contact Data From AddreessBook   |");
-    console.log("| 5  -> Exit From AddressBook System            |");
+    console.log("| 5  -> Show Size of AddressBook                |");
+    console.log("| 6  -> Exit From AddressBook System            |");
     console.log("|-----------------------------------------------|");
 
     console.log(">>> Enter Your Choice  >>>");
@@ -165,6 +166,9 @@ while(addressBookFlag == true)
             deleteData(addressBookArray);
             break;
         case 5:
+            sizeOfAddressBook(addressBookArray);
+            break
+        case 6:
             addressBookFlag = false;
             console.log(" !! Thank You For Using Address Book System !! ");
             break;
@@ -254,4 +258,15 @@ function deleteData(addressBookArray)
     
     });
     console.log("\n * Person Data SuccessFully Deleted . *");
+}
+function sizeOfAddressBook(addressBookArray)
+{
+    
+    const count = () => addressBookArray.length;
+
+    console.log("---------------------------------------------------------------");
+    console.log("     *** Show Total Number of Contacts in AddressBook ***      ");
+    console.log("---------------------------------------------------------------");
+    console.log("Total Number of Contacts in AddressBook is :- "+addressBookArray.reduce( count,0 ));
+    console.log("---------------------------------------------------------------");
 }
