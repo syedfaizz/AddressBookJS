@@ -138,13 +138,14 @@ while(addressBookFlag == true)
 {
     let bookChoice;
    
-    console.log("\n|--------------------------------------------- -|");
+    console.log("\n|-----------------------------------------------|");
     console.log("|       * Address Book Choice *                 |");
     console.log("|-----------------------------------------------|");
     console.log("| 1  -> Add New Contact In AddreessBook         |");
     console.log("| 2  -> View All Contacts In AddreessBook       |");
     console.log("| 3  -> Modify Exsiting Contact In AddreessBook |");
-    console.log("| 4  -> Exit From AddressBook System            |");
+    console.log("| 4  -> Delete Contact Data From AddreessBook   |");
+    console.log("| 5  -> Exit From AddressBook System            |");
     console.log("|-----------------------------------------------|");
 
     console.log(">>> Enter Your Choice  >>>");
@@ -158,9 +159,12 @@ while(addressBookFlag == true)
             viewData(addressBookArray);
             break;
         case 3:
-             updateData(addressBookArray);
+            updateData(addressBookArray);
             break;
         case 4:
+            deleteData(addressBookArray);
+            break;
+        case 5:
             addressBookFlag = false;
             console.log(" !! Thank You For Using Address Book System !! ");
             break;
@@ -229,4 +233,25 @@ function updateData(addressBookArray)
     
     });
     console.log(" * Person Data SuccessFully Updated/Modified/Edited . *");
+}
+
+function deleteData(addressBookArray)
+{
+    const deleteName = prompt("Enter Name To Search: ")
+    addressBookArray.forEach(element => {
+        try {
+            if(element.firstName===deleteName){
+                console.log("\n ********* For Delete Data ********");
+                addressBookArray.pop(element);
+            }
+            else{
+                console.log(" Name  Not Found in DataBase ");
+                console.log(" > Make Sure You Type Validate First Name. ");
+            }
+        } catch (exception) {
+            console.error(exception)
+        }
+    
+    });
+    console.log("\n * Person Data SuccessFully Deleted . *");
 }
