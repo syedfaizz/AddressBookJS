@@ -147,7 +147,8 @@ while(addressBookFlag == true)
     console.log("| 4  -> Delete Contact Data From AddreessBook   |");
     console.log("| 5  -> Show Size of AddressBook                |");
     console.log("| 6  -> Search Contact Data from AddressBook    |");
-    console.log("| 7  -> Exit From AddressBook System            |");
+    console.log("| 7  -> View Contact Data from AddressBook      |");
+    console.log("| 8  -> Exit From AddressBook System            |");
     console.log("|-----------------------------------------------|");
 
     console.log(">>> Enter Your Choice  >>>");
@@ -173,6 +174,9 @@ while(addressBookFlag == true)
             searchContact(addressBookArray);
             break;
         case 7:
+            viewPersonByCityOrState(addressBookArray);
+            break;
+        case 8:
             addressBookFlag = false;
             console.log(" !! Thank You For Using Address Book System !! ");
             break;
@@ -328,6 +332,42 @@ function searchContact(addressBookArray)
             SearchByState = addressBookArray.filter(filterByState);
             console.log(SearchByState.toString());
             break;
+        
+    }
+}
 
+function viewPersonByCityOrState(addressBookArray)
+{
+    console.log(" *** View Person By City or State Name ***");
+    console.log("\n|-----------------------------------------------|");
+    console.log("|       ***  View Option Choice   ***         |");
+    console.log("|-----------------------------------------------|");
+    console.log("| 1  ->   View By City                        |");
+    console.log("| 2  ->   View By State                       |");
+    console.log("|-----------------------------------------------|");
+    const option = Number(prompt(">>> Enter Your Choice  >>>"))
+    switch(option)
+    {
+        case 1:
+            const city = prompt("Enter Search City Name:- ");
+            function filterByCity(element)
+            {
+                if(element.city === city)
+                    return element; 
+            }
+            SearchByCity = addressBookArray.filter(filterByCity);
+            console.log("Contacts belongs to "+city+" is :\n"+SearchByCity);
+            break;
+
+        case 2:
+            const state = prompt("Enter Search State Name:- ");
+            function filterByState(element)
+            {
+                if(element.state === state)
+                    return element; 
+            }
+            SearchByState = addressBookArray.filter(filterByState);
+            console.log("Contacts belongs to "+state+" is :\n"+SearchByState);
+            break;
     }
 }
