@@ -356,6 +356,8 @@ function viewPersonByCityOrState(addressBookArray)
                     return element; 
             }
             SearchByCity = addressBookArray.filter(filterByCity);
+            const countCity = () => SearchByCity.length;
+            console.log("Number of contacts lives in city is : "+SearchByCity.reduce( countCity,0 ));
             console.log("Contacts belongs to "+city+" is :\n"+SearchByCity);
             break;
 
@@ -367,6 +369,8 @@ function viewPersonByCityOrState(addressBookArray)
                     return element; 
             }
             SearchByState = addressBookArray.filter(filterByState);
+            const countState = () => SearchByState.length;
+            console.log("Number of contacts lives in state is : "+SearchByState.reduce( countState,0 ));
             console.log("Contacts belongs to "+state+" is :\n"+SearchByState);
             break;
     }
